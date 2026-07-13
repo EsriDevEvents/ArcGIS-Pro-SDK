@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArcGIS defaultAssembly="DAMLDemoTheater2.dll" defaultNamespace="DAMLDemoTheater" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{aa206038-c14b-42f1-8d92-44327fbe9030}" version="1.0" desktopVersion="3.7.0" product="ArcGISPro">
+    <Name>DAMLDemoTheater</Name>
+    <Description>DAMLDemoTheater description</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>ArcGIS Pro SDK Team, arcgisprosdk@esri.com</Author>
+    <Company>ESRI</Company>
+    <Date>1/15/2026 3:51:20 PM</Date>
+    <Subject>Framework</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+  <conditions>
+    <insertCondition id="NetworkDatasetLayerinMap_Condition">
+      <state id="NetworkDatasetLayerinMap_State" />
+    </insertCondition>
+  </conditions>
+  <modules>
+    <insertModule id="DAMLDemoTheater_Module" className="Module1" autoLoad="true" caption="Module1">
+      <tabs>
+        <tab id="DAMLDemoTheater_NavigatorTab" caption="Navigator" keytip="N">
+          <group refID="DAMLDemoTheater_NavigatorPrepare" />
+          <group refID="DAMLDemoTheater_NavigatorEditing" />
+          <group refID="DAMLDemoTheater_NavigatorNetwork" />
+          <group refID="DAMLDemoTheater_NavigatorPublish" />
+        </tab>
+      </tabs>
+      <groups>
+        <group id="DAMLDemoTheater_NavigatorPrepare" caption="Prepare" appearsOnAddInTab="false" keytip="P">
+          <!-- host controls within groups -->
+          <button refID="esri_mapping_addDataSplitButton" size="large" />
+          <button refID="esri_mapping_GPAnalysis_ClipButton" size="large" />
+        </group>
+        <group id="DAMLDemoTheater_NavigatorEditing" caption="Editing" appearsOnAddInTab="false" keytip="E">
+          <button refID="esri_editing_ShowCreateFeaturesBtn" size="large" />
+          <button refID="esri_editing_ShowEditFeaturesBtn" size="large" />
+          <button refID="esri_editing_DelSelFeaturesBtn" size="large" />
+        </group>
+        <group id="DAMLDemoTheater_NavigatorNetwork" caption="Network" appearsOnAddInTab="false" keytip="N">
+          <button refID="AsyncGPBuildNetwork" size="large" />
+        </group>
+        <group id="DAMLDemoTheater_NavigatorPublish" caption="Publish" appearsOnAddInTab="false" keytip="P1">
+          <button refID="esri_sharing_PackagingMobileMapPaneBtn" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="AsyncGPBuildNetwork" caption="Run Network Build" 
+								condition="NetworkDatasetLayerinMap_Condition" 
+								className="RunGPTools" loadOnClick="true" keytip="B0" smallImage="Layer_Send_Backward16" largeImage="Layer_Send_Backward32">
+          <tooltip heading="Run Network Build">
+						Run Network Build: runs the network build tool in asynchronous mode<disabledText /></tooltip>
+        </button>
+      </controls>
+    </insertModule>
+  </modules>
+</ArcGIS>

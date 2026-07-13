@@ -1,0 +1,54 @@
+﻿<ArcGIS defaultAssembly="DAMLDemoTheater3.dll" defaultNamespace="DAMLDemoTheater3" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+	<AddInInfo id="{aa206038-c14b-42f1-8d92-44327fbe9030}" version="1.0" desktopVersion="3.7.0" product="ArcGISPro">
+		<Name>DAMLDemoTheater3</Name>
+		<Description>DAMLDemoTheater3 description</Description>
+		<Image>Images\AddinDesktop32.png</Image>
+		<Author>ArcGIS Pro SDK Team, arcgisprosdk@esri.com</Author>
+		<Company>ESRI</Company>
+		<Date>1/15/2026 3:51:20 PM</Date>
+		<Subject>Framework</Subject>
+		<!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+	</AddInInfo>
+	<modules>
+		<insertModule id="DAMLDemoTheater_Module" className="Module1" autoLoad="false" caption="Module1">
+			<!-- uncomment to have the control hosted on a separate tab-->
+			<controls>
+				<!-- add your controls here -->
+				<button id="New_Menu_Item_Button" caption="New Button" className="New_Menu_Item_Button" loadOnClick="true" smallImage="GenericButtonBlue16" largeImage="GenericButtonBlue32" keytip="NB1">
+					<tooltip heading="Tooltip Heading">
+						New Button function<disabledText />
+					</tooltip>
+				</button>
+			</controls>
+		</insertModule>
+		<!-- Remove the Bookmarks Gallery from the Navigate group in the Map tab -->
+		<updateModule refID="esri_mapping">
+			<groups>
+				<updateGroup refID="esri_mapping_navigateGroup">
+					<deleteButton refID="esri_mapping_bookmarksNavigateGallery" />
+				</updateGroup>
+			</groups>
+		</updateModule>
+		<!-- Add the new button to the Navigate group in the Map tab -->
+		<updateModule refID="esri_mapping">
+			<groups>
+				<updateGroup refID="esri_mapping_navigateGroup">
+					<insertButton refID="New_Menu_Item_Button" />
+				</updateGroup>
+			</groups>
+		</updateModule>
+	</modules>
+	<backstage>
+		<!--Deletes the New Project tab in Pro's backstage-->
+		<deleteTab refID="esri_core_newProjectBackStageTab" />
+		<!--Deletes the Open Project tab in Pro's backstage-->
+		<deleteTab refID="esri_core_openProjectBackStageTab" />
+		<!--Inserts a new tab into Pro's backstage, placed before the Save Project tab-->
+		<insertTab id="GeocodeBackstageTab" caption="Geocode" 
+							 className="DAML.Backstage.GeocodeBackstageTabViewModel" 
+							 insert="before" placeWith="esri_core_saveProjectButton" keytip="Z7">
+			<content className="DAML.Backstage.GeocodeBackstageTabView" />
+		</insertTab>
+	</backstage>
+</ArcGIS>
